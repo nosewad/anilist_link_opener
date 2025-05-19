@@ -5,43 +5,51 @@ import collections
 
 
 anime_list = []
+anime_list_copy = []
 processed_anime = []
 
 
 # Asks for file location then translates to a list
-with open(input("Enter File location: ")) as file:
+with open(
+    input("Enter file location or type file name if it's in the same directory: ")
+) as file:
     for line in file:
         anime_list.append(line.rstrip("\n"))
 
+anime_list_copy = anime_list.copy()
 
-while True:
-    i = 0
-    for anime in anime_list:
+user_number = int(
+    input("How many tabs would you like to open at once? 10 - 15 is recommended. ")
+)
 
-        if i == 10:
-            user_input = input("Would you like to do another 10? y/n ")
-            if user_input == "n":
-                sys.exit()
-            elif user_input == "y":
-                i = 0
-            else:
-                print("Not a valid response.")
 
-        elif anime in processed_anime:
-            # compares anime_list to processed_anime, and if they are the same, script terminates
-            if collections.Counter(anime_list) == collections.Counter(processed_anime):
-                print("Finished")
-                sys.exit()
-            else:
-                continue
+# asks user if they would like to continue, quits if not
+def question():
+    user_input = input(f"Would you like to open another {user_number} links? y/n ")
 
-        else:
-            # formats anilist.co link
-            ani_link = "https://anilist.co/search/anime?search=" + anime
+    if user_input == "y" or "Y":
+        open_anime()
+    elif user_input == "n" or "N":
+        sys.exit()
+    else:
+        print("Invalid response.")
 
-            # opens anilist.co link in browser
-            webbrowser.open_new_tab(ani_link)
 
-            processed_anime.append(anime)
-            i += 1
-            time.sleep(0.25)
+# opens anilist.co link in browser
+def open_anime():
+    x = 0
+    while x <= (user_number - 1):
+        ani_link = f"https://anilist.co/search/anime?search={anime_list[0]}"
+        webbrowser.open_new_tab(ani_link)
+        processed_anime.append(anime_list[0])
+        anime_list.pop(0)
+        x += 1
+        if collections.Counter(processed_anime) == collections.Counter(anime_list_copy):
+            print("Finished")
+            sys.exit()
+        time.sleep(0.25)
+    x = 0
+    question()
+
+
+open_anime()
