@@ -9,7 +9,7 @@ anime_list_copy = []
 processed_anime = []
 
 
-# Asks for file location then translates to a list
+# asks for file location then translates to a list
 with open(
     input("Enter file location or type file name if it's in the same directory: ")
 ) as file:
@@ -18,6 +18,7 @@ with open(
 
 anime_list_copy = anime_list.copy()
 
+# asks user for batch size
 user_number = int(
     input("How many tabs would you like to open at once? 10 - 15 is recommended. ")
 )
