@@ -21,7 +21,7 @@ anime_list_copy = anime_list.copy()
 
 # asks user for batch size
 user_number = int(
-    input("How many tabs would you like to open at once? 10 - 15 is recommended. ")
+    input("How many tabs would you like to open at once? 20-30 is recommended. ")
 )
 
 
