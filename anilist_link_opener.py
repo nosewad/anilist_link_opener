@@ -51,7 +51,6 @@ def open_anime():
             print("Finished")
             sys.exit()
         time.sleep(0.25)
-    x = 0
     question()
 
 
