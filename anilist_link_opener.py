@@ -35,6 +35,7 @@ def question():
         sys.exit()
     else:
         print("Invalid response.")
+        question()
 
 
 # opens anilist.co link in browser
