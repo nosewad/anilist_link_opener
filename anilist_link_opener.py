@@ -1,3 +1,4 @@
+# https://github.com/nosewad/anilist_link_opener
 import webbrowser
 import sys
 import time
